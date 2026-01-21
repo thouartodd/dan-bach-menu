@@ -131,8 +131,8 @@ async function loadStory() {
 
       // Set entry content
       const entryElement = clone.querySelector(".story-entry");
-      if (entry.recent) {
-        entryElement.classList.add("recent");
+      if (entry.active) {
+        entryElement.classList.add("active");
       }
 
       clone.querySelector(".entry-date").textContent = entry.date;
