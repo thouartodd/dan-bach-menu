@@ -5,13 +5,13 @@ const STATS_DESCRIPTION_1_NAME = "DESIGNATION";
 const STATS_DESCRIPTION_1_VALUE = "Daniel Sulkin";
 
 const STATS_DESCRIPTION_2_NAME = "CLASS";
-const STATS_DESCRIPTION_2_VALUE = "Bounty Hunter";
+const STATS_DESCRIPTION_2_VALUE = "Developer";
 
 const STATS_DESCRIPTION_3_NAME = "RANK";
-const STATS_DESCRIPTION_3_VALUE = "ELITE";
+const STATS_DESCRIPTION_3_VALUE = "1";
 
 const STATS_DESCRIPTION_4_NAME = "STATUS";
-const STATS_DESCRIPTION_4_VALUE = "ACTIVE";
+const STATS_DESCRIPTION_4_VALUE = "Lost";
 
 // Health and Vital Statistics
 const STATS_HEALTH_NAME = "HEALTH";
@@ -48,7 +48,8 @@ const LOCATION_DEPTH_VALUE = "-247m";
 
 // Map Location Details
 const MAP_LOCATION_NAME = "BRINSTAR";
-const MAP_LOCATION_DESCRIPTION = "Surface region characterized by dense jungle vegetation and high humidity. Environment is suitable for most lifeforms.";
+const MAP_LOCATION_DESCRIPTION =
+  "Surface region characterized by dense jungle vegetation and high humidity. Environment is suitable for most lifeforms.";
 
 const MAP_TEMP_NAME = "TEMP";
 const MAP_TEMP_VALUE = "28.4°C";
@@ -61,7 +62,7 @@ const MAP_TOXICITY_VALUE = "LOW";
 
 // Unit ID
 const UNIT_ID_NAME = "UNIT ID";
-const UNIT_ID_VALUE = "SAMUS-ARAN";
+const UNIT_ID_VALUE = "DANIEL-SULKIN-001";
 
 // System Status
 const SYS_STATUS_NAME = "SYS";

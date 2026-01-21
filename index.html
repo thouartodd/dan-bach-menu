@@ -18,15 +18,15 @@
                     <h2>MISSION, EQUIPMENT, & NAVIGATION UPLINK</h2>
                 </div>
                 <div class="system-status">
-                    <div class="status-item">
-                        <span class="status-label">SYS:</span>
-                        <span class="status-value online">ONLINE</span>
+                    <div class="status-item" id="status-item-1">
+                        <span class="status-label" id="sys-status-label">SYS:</span>
+                        <span class="status-value online" id="sys-status">ONLINE</span>
                     </div>
-                    <div class="status-item">
-                        <span class="status-label">PWR:</span>
-                        <span class="status-value">87%</span>
+                    <div class="status-item" id="status-item-2">
+                        <span class="status-label" id="power-level-label">PWR:</span>
+                        <span class="status-value" id="power-level">87%</span>
                     </div>
-                    <div class="status-item">
+                    <div class="status-item" id="status-item-3">
                         <span class="status-label">TIME:</span>
                         <span class="status-value" id="system-time"
                             >00:00:00</span
@@ -106,27 +106,28 @@
                             </div>
                             <div class="character-info">
                                 <h3>UNIT DATA</h3>
-                                <div class="info-item">
-                                    <div class="info-label">DESIGNATION:</div>
+                                <div class="info-item" id="info-item-1">
+                                    <div class="info-label">DESIGNATION</div>
                                     <div class="info-value">Daniel Sulkin</div>
                                 </div>
-                                <div class="info-item">
-                                    <div class="info-label">CLASS:</div>
-                                    <div class="info-value">Game Developer</div>
+                                <div class="info-item" id="info-item-2">
+                                    <div class="info-label">CLASS</div>
+                                    <div class="info-value">Bounty Hunter</div>
                                 </div>
-                                <div class="info-item">
-                                    <div class="info-label">RANK:</div>
-                                    <div class="info-value">1</div>
+                                <div class="info-item" id="info-item-3">
+                                    <div class="info-label">RANK</div>
+                                    <div class="info-value">ELITE</div>
                                 </div>
-                                <div class="info-item">
-                                    <div class="info-label">STATUS:</div>
-                                    <div class="info-value active">Lost</div>
+                                <div class="info-item" id="info-item-4">
+                                    <div class="info-label">STATUS</div>
+                                    <div class="info-value active">ACTIVE</div>
                                 </div>
                             </div>
                         </div>
                         <div class="stats-container">
                             <div class="stats-grid">
                                 <div class="stat-item">
+                                <div class="stat-item" id="stat-health">
                                     <div class="stat-label">HEALTH</div>
                                     <div class="stat-bar">
                                         <div
@@ -136,17 +137,7 @@
                                     </div>
                                     <div class="stat-value">85%</div>
                                 </div>
-                                <div class="stat-item">
-                                    <div class="stat-label">ARMOR</div>
-                                    <div class="stat-bar">
-                                        <div
-                                            class="stat-fill armor"
-                                            style="width: 70%"
-                                        ></div>
-                                    </div>
-                                    <div class="stat-value">70%</div>
-                                </div>
-                                <div class="stat-item">
+                                <div class="stat-item" id="stat-energy">
                                     <div class="stat-label">ENERGY</div>
                                     <div class="stat-bar">
                                         <div
@@ -156,7 +147,7 @@
                                     </div>
                                     <div class="stat-value">60%</div>
                                 </div>
-                                <div class="stat-item">
+                                <div class="stat-item" id="stat-oxygen">
                                     <div class="stat-label">OXYGEN</div>
                                     <div class="stat-bar">
                                         <div
@@ -166,25 +157,35 @@
                                     </div>
                                     <div class="stat-value">95%</div>
                                 </div>
+                                <div class="stat-item" id="stat-armor">
+                                    <div class="stat-label">ARMOR</div>
+                                    <div class="stat-bar">
+                                        <div
+                                            class="stat-fill armor"
+                                            style="width: 70%"
+                                        ></div>
+                                    </div>
+                                    <div class="stat-value">70%</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="stats-info">
                         <div class="info-card">
                             <h3>MISSION PROGRESS</h3>
-                            <div class="mission-item active">
+                            <div class="mission-item active" id="mission-1">
                                 <div class="mission-title">
                                     Investigate Signal Anomaly
                                 </div>
                                 <div class="mission-status">IN PROGRESS</div>
                             </div>
-                            <div class="mission-item">
+                            <div class="mission-item" id="mission-2">
                                 <div class="mission-title">
                                     Locate Energy Source
                                 </div>
                                 <div class="mission-status">PENDING</div>
                             </div>
-                            <div class="mission-item">
+                            <div class="mission-item" id="mission-3">
                                 <div class="mission-title">
                                     Retrieve Artifact
                                 </div>
@@ -193,16 +194,16 @@
                         </div>
                         <div class="info-card">
                             <h3>LOCATION DATA</h3>
-                            <div class="location-item">
-                                <div class="location-label">SECTOR:</div>
+                            <div class="location-item" id="location-1">
+                                <div class="location-label">SECTOR</div>
                                 <div class="location-value">ZEBES</div>
                             </div>
-                            <div class="location-item">
-                                <div class="location-label">REGION:</div>
+                            <div class="location-item" id="location-2">
+                                <div class="location-label">REGION</div>
                                 <div class="location-value">CRATERIA</div>
                             </div>
-                            <div class="location-item">
-                                <div class="location-label">DEPTH:</div>
+                            <div class="location-item" id="location-3">
+                                <div class="location-label">DEPTH</div>
                                 <div class="location-value">-247m</div>
                             </div>
                         </div>
@@ -413,15 +414,15 @@
                                 suitable for most lifeforms.
                             </p>
                             <div class="detail-stats">
-                                <div class="detail-stat">
+                                <div class="detail-stat" id="detail-stat-1">
                                     <div class="stat-label">TEMP:</div>
                                     <div class="stat-value">28.4°C</div>
                                 </div>
-                                <div class="detail-stat">
+                                <div class="detail-stat" id="detail-stat-2">
                                     <div class="stat-label">HUMID:</div>
                                     <div class="stat-value">87%</div>
                                 </div>
-                                <div class="detail-stat">
+                                <div class="detail-stat" id="detail-stat-3">
                                     <div class="stat-label">TOXIC:</div>
                                     <div class="stat-value">LOW</div>
                                 </div>
@@ -573,8 +574,8 @@
                     </div>
                 </div>
                 <div class="system-id">
-                    <div class="id-label">UNIT ID:</div>
-                    <div class="id-value">SAMUS-ARAN</div>
+                    <div class="id-label" id="unit-id-label">UNIT ID:</div>
+                        <div class="id-value" id="unit-id-value">SAMUS-ARAN</div>
                 </div>
             </footer>
         </div>
