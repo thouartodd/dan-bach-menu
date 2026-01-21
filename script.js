@@ -14,6 +14,9 @@ function updateTime() {
 // Global variable to store items data
 let itemsData = null;
 
+// Global flag to track if click handler is enabled
+let clickHandlerEnabled = true;
+
 // Load items from JSON file and populate the inventory
 async function loadItems() {
   try {
@@ -23,11 +26,6 @@ async function loadItems() {
     // Store the data globally for later use
     itemsData = await response.json();
 
-    // Debug: Log initial item states
-    console.log("Initial item states:");
-    itemsData.items.forEach((item) => {
-      console.log(`${item.name}: equipped=${item.equipped}, locked=${item.locked}`);
-    });
     const inventoryGrid = document.getElementById("inventory-grid");
 
     if (!inventoryGrid) return; // Not on inventory page
@@ -259,11 +257,11 @@ function initializeContent() {
 
   // Interactive inventory items - use event delegation for dynamically loaded items
   document.addEventListener("click", function (e) {
+    // Skip if click handler is disabled
+    if (!clickHandlerEnabled) return;
+
     const item = e.target.closest(".inventory-item");
     if (!item) return;
-
-    // Prevent duplicate click handling
-    if (e.detail > 1) return;
 
     // Get the item ID from the data attribute
     const itemId = item.dataset.itemId;
@@ -286,8 +284,6 @@ function initializeContent() {
     // Toggle equipped state for the clicked item
     const wasEquipped = itemData.equipped === true;
 
-    console.log(`Clicked ${itemData.name}, was equipped: ${wasEquipped}`);
-
     if (!wasEquipped) {
       // Equip the clicked item
       itemData.equipped = true;
@@ -296,7 +292,6 @@ function initializeContent() {
       window.itemsData.items.forEach((i) => {
         if (i.id !== itemId && i.category === itemData.category) {
           i.equipped = false;
-          console.log(`Unequipping ${i.name} in the same category`);
         }
       });
     } else {
@@ -311,9 +306,6 @@ function initializeContent() {
 
       if (uiItemData) {
         const status = getItemStatus(uiItemData);
-
-        // Debug: Log the item state
-        console.log(`Updating UI for ${uiItemData.name}: equipped=${uiItemData.equipped}, status=${status}`);
 
         // Update the status text
         uiItem.querySelector(".status-text").textContent = status;
@@ -331,9 +323,13 @@ function initializeContent() {
 
     // Visual feedback
     item.style.transform = "scale(0.98)";
+
+    // Disable click handler temporarily to prevent duplicate clicks
+    clickHandlerEnabled = false;
     setTimeout(() => {
       item.style.transform = "";
-    }, 200);
+      clickHandlerEnabled = true;
+    }, 50);
   });
 
   // Interactive map cells
