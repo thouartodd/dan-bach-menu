@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>M.E.N.U. - Mission, Equipment, & Navigation Uplink</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="menu-container">
+            <header class="menu-header">
+                <div class="menu-title">
+                    <h1>M.E.N.U.</h1>
+                    <h2>MISSION, EQUIPMENT, & NAVIGATION UPLINK</h2>
+                </div>
+                <div class="system-status">
+                    <div class="status-item">
+                        <span class="status-label">SYS:</span>
+                        <span class="status-value online">ONLINE</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">PWR:</span>
+                        <span class="status-value">87%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">TIME:</span>
+                        <span class="status-value" id="system-time"
+                            >00:00:00</span
+                        >
+                    </div>
+                </div>
+            </header>
+
+            <nav class="menu-nav">
+                <button class="nav-item active" data-tab="stats">
+                    <div class="nav-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="nav-label">STATS</div>
+                </button>
+                <button class="nav-item" data-tab="inventory">
+                    <div class="nav-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9M1,10H3V20H19V22H1V10Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="nav-label">INVENTORY</div>
+                </button>
+                <button class="nav-item" data-tab="map">
+                    <div class="nav-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M15,11V5L12,2L9,5V11H3V21H21V11H15M12,4.5L13.5,6V11H10.5V6L12,4.5M5,13H11V19H5V13M13,13H19V19H13V13Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="nav-label">MAP</div>
+                </button>
+                <button class="nav-item" data-tab="story">
+                    <div class="nav-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="M9,4V1H3V4H9M10,19C10,20.1 9.1,21 8,21C6.9,21 6,20.1 6,19C6,17.9 6.9,17 8,17C9.1,17 10,17.9 10,19M13,2V11H11V2H13M18,4V1H12V4H18M19,19C19,20.1 18.1,21 17,21C15.9,21 15,20.1 15,19C15,17.9 15.9,17 17,17C18.1,17 19,17.9 19,19M21,11V8H15V11H21M7,11V8H1V11H7M16,16V15H14V13H10V15H8V16H10V18H14V16H16Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="nav-label">STORY</div>
+                </button>
+            </nav>
+
+            <main class="menu-content">
+                <div class="tab-content active" id="stats-tab">
+                    <div class="content-header">
+                        <h2>VITAL STATISTICS</h2>
+                    </div>
+                    <div class="stats-layout">
+                        <div class="character-display">
+                            <div class="character-image-container">
+                                <img
+                                    src="assets/main_character_art.webp"
+                                    alt="Character"
+                                    class="character-image"
+                                />
+                            </div>
+                            <div class="character-info">
+                                <h3>UNIT DATA</h3>
+                                <div class="info-item">
+                                    <div class="info-label">DESIGNATION:</div>
+                                    <div class="info-value">Daniel Sulkin</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">CLASS:</div>
+                                    <div class="info-value">Game Developer</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">RANK:</div>
+                                    <div class="info-value">1</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">STATUS:</div>
+                                    <div class="info-value active">Lost</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-container">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-label">HEALTH</div>
+                                    <div class="stat-bar">
+                                        <div
+                                            class="stat-fill health"
+                                            style="width: 85%"
+                                        ></div>
+                                    </div>
+                                    <div class="stat-value">85%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">ARMOR</div>
+                                    <div class="stat-bar">
+                                        <div
+                                            class="stat-fill armor"
+                                            style="width: 70%"
+                                        ></div>
+                                    </div>
+                                    <div class="stat-value">70%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">ENERGY</div>
+                                    <div class="stat-bar">
+                                        <div
+                                            class="stat-fill energy"
+                                            style="width: 60%"
+                                        ></div>
+                                    </div>
+                                    <div class="stat-value">60%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">OXYGEN</div>
+                                    <div class="stat-bar">
+                                        <div
+                                            class="stat-fill oxygen"
+                                            style="width: 95%"
+                                        ></div>
+                                    </div>
+                                    <div class="stat-value">95%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-info">
+                        <div class="info-card">
+                            <h3>MISSION PROGRESS</h3>
+                            <div class="mission-item active">
+                                <div class="mission-title">
+                                    Investigate Signal Anomaly
+                                </div>
+                                <div class="mission-status">IN PROGRESS</div>
+                            </div>
+                            <div class="mission-item">
+                                <div class="mission-title">
+                                    Locate Energy Source
+                                </div>
+                                <div class="mission-status">PENDING</div>
+                            </div>
+                            <div class="mission-item">
+                                <div class="mission-title">
+                                    Retrieve Artifact
+                                </div>
+                                <div class="mission-status">LOCKED</div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <h3>LOCATION DATA</h3>
+                            <div class="location-item">
+                                <div class="location-label">SECTOR:</div>
+                                <div class="location-value">ZEBES</div>
+                            </div>
+                            <div class="location-item">
+                                <div class="location-label">REGION:</div>
+                                <div class="location-value">CRATERIA</div>
+                            </div>
+                            <div class="location-item">
+                                <div class="location-label">DEPTH:</div>
+                                <div class="location-value">-247m</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="inventory-tab">
+                    <div class="content-header">
+                        <h2>EQUIPMENT INVENTORY</h2>
+                    </div>
+                    <div class="inventory-grid">
+                        <div class="inventory-item equipped">
+                            <div class="item-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M8.5,8.64L6.5,11.39L3.5,7.39L7.5,3.39L16.5,3.39L20.5,7.39L17.5,11.39L15.5,8.64L12,12.14L8.5,8.64M15.5,15.36L17.5,12.61L20.5,16.61L16.5,20.61L7.5,20.61L3.5,16.61L6.5,12.61L8.5,15.36L12,11.86L15.5,15.36Z"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">VARIA SUIT</div>
+                                <div class="item-description">
+                                    Standard issue exosuit with enhanced
+                                    environmental protection
+                                </div>
+                            </div>
+                            <div class="item-status">
+                                <div class="status-indicator active"></div>
+                                <div class="status-text">EQUIPPED</div>
+                            </div>
+                        </div>
+                        <div class="inventory-item">
+                            <div class="item-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M17.5,3A5.5,5.5 0 0,1 23,8.5C23,11.11 21.34,13.33 19,14.19V21H5V14.19C2.66,13.33 1,11.11 1,8.5A5.5,5.5 0 0,1 6.5,3H17.5M17.5,5H6.5A3.5,3.5 0 0,0 3,8.5A3.5,3.5 0 0,0 6.5,12H7V19H17V12H17.5A3.5,3.5 0 0,0 21,8.5A3.5,3.5 0 0,0 17.5,5M7,13V17H9V13H7M11,13V17H13V13H11M15,13V17H17V13H15Z"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">MORPH BALL</div>
+                                <div class="item-description">
+                                    Transformatory system for accessing narrow
+                                    passages
+                                </div>
+                            </div>
+                            <div class="item-status">
+                                <div class="status-indicator"></div>
+                                <div class="status-text">AVAILABLE</div>
+                            </div>
+                        </div>
+                        <div class="inventory-item locked">
+                            <div class="item-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">GRAVITY SUIT</div>
+                                <div class="item-description">
+                                    Advanced exosuit with enhanced mobility
+                                    underwater
+                                </div>
+                            </div>
+                            <div class="item-status">
+                                <div class="status-indicator"></div>
+                                <div class="status-text">LOCKED</div>
+                            </div>
+                        </div>
+                        <div class="inventory-item">
+                            <div class="item-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M17,19H7V5H17M17,3H7C5.89,3 5,3.89 5,5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V5C19,3.89 18.1,3 17,3Z"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">MISSILES</div>
+                                <div class="item-description">
+                                    High-explosive projectiles for penetrating
+                                    defenses
+                                </div>
+                            </div>
+                            <div class="item-status">
+                                <div class="status-indicator active"></div>
+                                <div class="status-text">120/250</div>
+                            </div>
+                        </div>
+                        <div class="inventory-item">
+                            <div class="item-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M11.93,2.3C11.78,2.3 11.62,2.35 11.5,2.43L2.5,8.43C2.27,8.58 2.09,8.82 2.03,9.09C1.94,9.39 1.96,9.72 2.09,10L7.09,21C7.24,21.33 7.56,21.55 7.92,21.62C8.28,21.69 8.65,21.59 8.92,21.34L20.92,10.34C21.17,10.11 21.28,9.76 21.22,9.43C21.15,9.09 20.92,8.82 20.59,8.69L12.59,5.69C12.5,5.65 12.42,5.63 12.33,5.62L12.09,2.82C12.05,2.53 11.88,2.28 11.63,2.15C11.41,2.04 11.16,2 11.93,2.3M11,4.5L11.24,7.38L18.24,10L7.76,19.5L3.47,10L11,4.5Z"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">POWER BEAM</div>
+                                <div class="item-description">
+                                    Standard issue energy weapon
+                                </div>
+                            </div>
+                            <div class="item-status">
+                                <div class="status-indicator active"></div>
+                                <div class="status-text">EQUIPPED</div>
+                            </div>
+                        </div>
+                        <div class="inventory-item locked">
+                            <div class="item-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M20.84,22.73L18.11,20H3L3,4.89L1.11,3L2.39,1.73L22.11,21.46L20.84,22.73M21,12V19.17L13.83,12H21M3,8V12H7V8H3M3,14V18H7V14H3M9,8V12H11V8H9M9,14V18H11V14H9M13,8V10.17L15.83,13H15V11H13V8Z"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">WAVE BEAM</div>
+                                <div class="item-description">
+                                    Energy weapon capable of passing through
+                                    obstacles
+                                </div>
+                            </div>
+                            <div class="item-status">
+                                <div class="status-indicator"></div>
+                                <div class="status-text">LOCKED</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="map-tab">
+                    <div class="content-header">
+                        <h2>AREA MAP</h2>
+                    </div>
+                    <div class="map-container">
+                        <div class="map-grid">
+                            <div class="map-row">
+                                <div class="map-cell unknown"></div>
+                                <div class="map-cell unknown"></div>
+                                <div class="map-cell current">BRINSTAR</div>
+                                <div class="map-cell visited">NORFAIR</div>
+                                <div class="map-cell unknown"></div>
+                            </div>
+                            <div class="map-row">
+                                <div class="map-cell unknown"></div>
+                                <div class="map-cell visited">TOURIAN</div>
+                                <div class="map-cell visited">CRATERIA</div>
+                                <div class="map-cell visited">KRAID</div>
+                                <div class="map-cell unknown"></div>
+                            </div>
+                            <div class="map-row">
+                                <div class="map-cell unknown"></div>
+                                <div class="map-cell visited">RIDLEY</div>
+                                <div class="map-cell current">CHOCOLA</div>
+                                <div class="map-cell visited">PHANTOON</div>
+                                <div class="map-cell unknown"></div>
+                            </div>
+                            <div class="map-row">
+                                <div class="map-cell unknown"></div>
+                                <div class="map-cell unknown"></div>
+                                <div class="map-cell visited">MOTHER BRAIN</div>
+                                <div class="map-cell unknown"></div>
+                                <div class="map-cell unknown"></div>
+                            </div>
+                        </div>
+                        <div class="map-legend">
+                            <div class="legend-item">
+                                <div class="legend-color current"></div>
+                                <div class="legend-label">CURRENT</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color visited"></div>
+                                <div class="legend-label">EXPLORED</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color unknown"></div>
+                                <div class="legend-label">UNEXPLORED</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-details">
+                        <div class="detail-card">
+                            <h3>BRINSTAR</h3>
+                            <p>
+                                Surface region characterized by dense jungle
+                                vegetation and high humidity. Environment is
+                                suitable for most lifeforms.
+                            </p>
+                            <div class="detail-stats">
+                                <div class="detail-stat">
+                                    <div class="stat-label">TEMP:</div>
+                                    <div class="stat-value">28.4°C</div>
+                                </div>
+                                <div class="detail-stat">
+                                    <div class="stat-label">HUMID:</div>
+                                    <div class="stat-value">87%</div>
+                                </div>
+                                <div class="detail-stat">
+                                    <div class="stat-label">TOXIC:</div>
+                                    <div class="stat-value">LOW</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="story-tab">
+                    <div class="content-header">
+                        <h2>MISSION LOG</h2>
+                    </div>
+                    <div class="story-entries">
+                        <div class="story-entry">
+                            <div class="entry-date">LOG 078.34.5</div>
+                            <div class="entry-title">
+                                Initial Landing on Zebes
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    Touchdown confirmed on planet Zebes.
+                                    Atmosphere breathable but contains unknown
+                                    particulates. Beginning preliminary survey
+                                    of landing zone in Crateria region.
+                                </p>
+                                <p>
+                                    Energy readings suggest significant activity
+                                    below surface. Scans indicate multiple
+                                    distinct biomes with unique environmental
+                                    signatures.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="story-entry">
+                            <div class="entry-date">LOG 078.34.8</div>
+                            <div class="entry-title">First Contact</div>
+                            <div class="entry-content">
+                                <p>
+                                    Encountered hostile lifeforms in Brinstar
+                                    region. Indigenous species demonstrate
+                                    aggressive territorial behavior. Combat
+                                    protocols engaged successfully.
+                                </p>
+                                <p>
+                                    Discovered ruins of unknown origin with
+                                    technology not matching Space Pirate
+                                    database. Possible third party presence on
+                                    planet.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="story-entry">
+                            <div class="entry-date">LOG 078.35.1</div>
+                            <div class="entry-title">Anomalous Signal</div>
+                            <div class="entry-content">
+                                <p>
+                                    Detected unusual energy signature from deep
+                                    underground. Frequency pattern matches no
+                                    known technology in Federation database.
+                                </p>
+                                <p>
+                                    Signal appears to be a distress call but
+                                    with corrupted data. Source appears to be
+                                    mobile and changing location. Currently
+                                    tracking trajectory.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="story-entry">
+                            <div class="entry-date">LOG 078.35.3</div>
+                            <div class="entry-title">Space Pirate Activity</div>
+                            <div class="entry-content">
+                                <p>
+                                    Confirmed presence of Space Pirate
+                                    operations in Norfair region.
+                                    High-temperature environment suggests they
+                                    may be exploiting local geothermal energy
+                                    sources.
+                                </p>
+                                <p>
+                                    Intercepted transmissions indicate they are
+                                    searching for something referred to as "The
+                                    Artifact." Cross-referencing with Federation
+                                    databases yields no match.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="story-entry recent">
+                            <div class="entry-date">LOG 078.35.4</div>
+                            <div class="entry-title">Current Objective</div>
+                            <div class="entry-content">
+                                <p>
+                                    Primary mission directive updated:
+                                    Investigate source of anomalous signal and
+                                    locate "The Artifact" before Space Pirate
+                                    forces.
+                                </p>
+                                <p>
+                                    Environmental hazards in Norfair region
+                                    require specialized equipment. Progress to
+                                    deeper areas currently blocked.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="menu-footer">
+                <div class="controls-info">
+                    <div class="control-item">
+                        <div class="control-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="control-text">SELECT</div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M18,16V14H10V16H18M18,12V10H10V12H18M18,8V6H10V8H18M8,16V14H6V16H8M8,12V10H6V12H8M8,8V6H6V8H8M20,4H4V20H20V4Z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="control-text">NAVIGATE</div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M17,8.5L13.5,12L17,15.5L15.5,17L12,13.5L8.5,17L7,15.5L10.5,12L7,8.5L8.5,7L12,10.5L15.5,7L17,8.5Z"
+                                />
+                            </svg>
+                        </div>
+                        <div class="control-text">BACK</div>
+                    </div>
+                </div>
+                <div class="system-id">
+                    <div class="id-label">UNIT ID:</div>
+                    <div class="id-value">SAMUS-ARAN</div>
+                </div>
+            </footer>
+        </div>
+
+        <script src="js/constants.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
+``` Now I'll create the CSS file to style this Metroid-style interface: ``` /*
+dan-bach-menu\styles.css */ /* Reset and base styles */ * { margin: 0; padding:
+0; box-sizing: border-box; } body { font-family: 'Rajdhani', sans-serif;
+background-color: #0a0a0a; color: #a0f0ff; line-height: 1.4; overflow: hidden; }
+/* Main container */ .menu-container { height: 100vh; width: 100vw; display:
+flex; flex-direction: column; background: linear-gradient(135deg, #0c1821 0%,
+#162e3a 50%, #0c1821 100%); position: relative; overflow: hidden; } /* Scanline
+effect */ .menu-container::before { content: ""; position: absolute; top: 0;
+left: 0; width: 100%; height: 100%; background: repeating-linear-gradient( 0deg,
+rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px
+); pointer-events: none; z-index: 10; } /* Header */ .menu-header { display:
+flex; justify-content: space-between; align-items: center; padding: 15px 20px;
+background: rgba(10, 24, 41, 0.7); border-bottom: 2px solid #2fc4ff; box-shadow:
+0 2px 10px rgba(47, 196, 255, 0.3); } .menu-title h1 { font-family: 'Orbitron',
+sans-serif; font-size: 2.2rem; font-weight: 900; color: #2fc4ff; letter-spacing:
+0.2rem; margin-bottom: 5px; text-shadow: 0 0 10px rgba(47, 196, 255, 0.7); }
+.menu-title h2 { font-family: 'Orbitron', sans-serif; font-size: 0.9rem;
+font-weight: 400; color: #80cfff; letter-spacing: 0.1rem; } .system-status {
+display: flex; gap: 15px; } .status-item { display: flex; align-items: center; }
+.status-label { font-family: 'Orbitron', sans-serif; font-size: 0.9rem;
+font-weight: 700; margin-right: 5px; } .status-value { font-family: 'Orbitron',
+sans-serif; font-size: 0.9rem; color: #ffffff; } .status-value.online { color:
+#4fff4f; text-shadow: 0 0 5px rgba(79, 255, 79, 0.7); } /* Navigation */
+.menu-nav { display: flex; justify-content: space-around; background: rgba(10,
+24, 41, 0.8); border-bottom: 1px solid #2fc4ff; padding: 10px 0; } .nav-item {
+display: flex; flex-direction: column; align-items: center; background: none;
+border: none; color: #80cfff; cursor: pointer; padding: 10px 20px; transition:
+all 0.3s ease; position: relative; } .nav-item:hover { color: #ffffff;
+background: rgba(47, 196, 255, 0.1); } .nav-item.active { color: #2fc4ff;
+background: rgba(47, 196, 255, 0.2); } .nav-item.active::after { content: '';
+position: absolute; bottom: -11px; left: 0; width: 100%; height: 3px;
+background: #2fc4ff; box-shadow: 0 0 10px rgba(47, 196, 255, 0.7); } .nav-icon {
+width: 30px; height: 30px; margin-bottom: 5px; } .nav-icon svg { width: 100%;
+height: 100%; fill: currentColor; } .nav-label { font-family: 'Orbitron',
+sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1rem; } /*
+Main content */ .menu-content { flex: 1; overflow-y: auto; padding: 20px;
+position: relative; } .tab-content { display: none; animation: fadeIn 0.5s ease;
+} .tab-content.active { display: block; } @keyframes fadeIn { from { opacity: 0;
+} to { opacity: 1; } } .content-header { margin-bottom: 20px; padding-bottom:
+10px; border-bottom: 1px solid #2fc4ff; } .content-header h2 { font-family:
+'Orbitron', sans-serif; font-size: 1.8rem; color: #2fc4ff; letter-spacing:
+0.1rem; text-shadow: 0 0 10px rgba(47, 196, 255, 0.3); } /* Stats Tab */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit,
+minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; } .stat-item { background:
+rgba(10, 24, 41, 0.7); border: 1px solid #2fc4ff; border-radius: 5px; padding:
+15px; box-shadow: 0 0 10px rgba(47, 196, 255, 0.2); } .stat-label { font-family:
+'Orbitron', sans-serif; font-weight: 700; margin-bottom: 10px; letter-spacing:
+0.05rem; } .stat-bar { height: 15px; background: rgba(0, 0, 0, 0.5);
+border-radius: 10px; overflow: hidden; margin-bottom: 5px; } .stat-fill {
+height: 100%; border-radius: 10px; transition: width 1s ease; }
+.stat-fill.health { background: linear-gradient(90deg, #ff4444, #ff8888);
+box-shadow: 0 0 10px rgba(255, 68, 68, 0.5); } .stat-fill.energy { background:
+linear-gradient(90deg, #4444ff, #8888ff); box-shadow: 0 0 10px rgba(68, 68, 255,
+0.5); } .stat-fill.oxygen { background: linear-gradient(90deg, #44ffff,
+#88ffff); box-shadow: 0 0 10px rgba(68, 255, 255, 0.5); } .stat-fill.armor {
+background: linear-gradient(90deg, #ffaa44, #ffcc88); box-shadow: 0 0 10px
+rgba(255, 170, 68, 0.5); } .stat-value { font-family: 'Orbitron', sans-serif;
+text-align: right; font-size: 0.9rem; } .stats-info { display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.info-card { background: rgba(10, 24, 41, 0.7); border: 1px solid #2fc4ff;
+border-radius: 5px; padding: 15px; box-shadow: 0 0 10px rgba(47, 196, 255, 0.2);
+} .info-card h3 { font-family: 'Orbitron', sans-serif; color: #2fc4ff;
+margin-bottom: 15px; letter-spacing: 0.05rem; } .mission-item { display: flex;
+justify-content: space-between; align-items: center; padding: 10px;
+border-bottom: 1px solid rgba(47, 196, 255, 0.3); } .mission-item:last-child {
+border-bottom: none; } .mission-item.active { background: rgba(47, 196, 255,
+0.1); } .mission-title { font-weight: 600; } .mission-status { font-family:
+'Orbitron', sans-serif; font-size: 0.8rem; color: #4fff4f; text-shadow: 0 0 5px
+rgba(79, 255, 79, 0.3); } .location-item { display: flex; padding: 8px 0;
+border-bottom: 1px solid rgba(47, 196, 255, 0.3); } .location-item:last-child {
+border-bottom: none; } .location-label { font-family: 'Orbitron', sans-serif;
+font-weight: 600; margin-right: 10px; } .location-value { color: #ffffff; } /*
+Inventory Tab */ .inventory-grid { display: grid; grid-template-columns:
+repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; } .inventory-item { display:
+flex; background: rgba(10, 24, 41, 0.7); border: 1px solid #2fc4ff;
+border-radius: 5px; padding: 15px; box-shadow: 0 0 10px rgba(47, 196, 255, 0.2);
+transition: all 0.3s ease; } .inventory-item:hover { transform:
+translateY(-5px); box-shadow: 0 5px 15px rgba(47, 196, 255, 0.4); }
+.inventory-item.equipped { border-color: #4fff4f; box-shadow: 0 0 15px rgba(79,
+255, 79, 0.3); } .inventory-item.locked { border-color: #ff4444; box-shadow: 0 0
+15px rgba(255, 68, 68, 0.3); opacity: 0.7; } .item-icon { width: 50px; height:
+50px; margin-right: 15px; display: flex; align-items: center; justify-content:
+center; background: rgba(0, 0, 0, 0.3); border-radius: 5px; } .item-icon svg {
+width: 30px; height: 30px; fill: #2fc4ff; } .item-info { flex: 1; } .item-name {
+font-family: 'Orbitron', sans-serif; font-weight: 700; margin-bottom: 5px;
+letter-spacing: 0.05rem; } .item-description { font-size: 0.9rem; color:
+#a0d0ff; line-height: 1.3; } .item-status { display: flex; flex-direction:
+column; align-items: flex-end; justify-content: center; } .status-indicator {
+width: 10px; height: 10px; border-radius: 50%; margin-bottom: 5px; }
+.status-indicator.active { background: #4fff4f; box-shadow: 0 0 10px rgba(79,
+255, 79, 0.7); } .status-text { font-family: 'Orbitron', sans-serif; font-size:
+0.8rem; text-align: right; } /* Map Tab */ .map-container { display: flex;
+flex-direction: column; align-items: center; margin-bottom: 30px; } .map-grid {
+display: grid; grid-template-columns: repeat(5, 100px); grid-template-rows:
+repeat(4, 100px); gap: 10px; margin-bottom: 20px; } .map-cell { display: flex;
+align-items: center; justify-content: center; font-family: 'Orbitron',
+sans-serif; font-size: 0.7rem; font-weight: 700; text-align: center; padding:
+5px; border-radius: 5px; transition: all 0.3s ease; } .map-cell.unknown {
+background: rgba(0, 0, 0, 0.5); border: 1px solid #444; color: #666; }
+.map-cell.visited { background: rgba(10, 24, 41, 0.7); border: 1px solid
+#2fc4ff; color: #80cfff; } .map-cell.current { background: rgba(47, 196, 255,
+0.2); border: 1px solid #2fc4ff; color: #ffffff; box-shadow: 0 0 15px rgba(47,
+196, 255, 0.5); animation: pulse 2s infinite; } @keyframes pulse { 0% {
+box-shadow: 0 0 15px rgba(47, 196, 255, 0.5); } 50% { box-shadow: 0 0 25px
+rgba(47, 196, 255, 0.8); } 100% { box-shadow: 0 0 15px rgba(47, 196, 255, 0.5);
+} } .map-legend { display: flex; gap: 20px; margin-bottom: 20px; } .legend-item
+{ display: flex; align-items: center; } .legend-color { width: 15px; height:
+15px; margin-right: 5px; border-radius: 3px; } .legend-color.current {
+background: rgba(47, 196, 255, 0.8); } .legend-color.visited { background:
+rgba(10, 24, 41, 0.8); border: 1px solid #2fc4ff; } .legend-color.unknown {
+background: rgba(0, 0, 0, 0.5); border: 1px solid #444; } .legend-label {
+font-family: 'Orbitron', sans-serif; font-size: 0.9rem; } .location-details {
+display: grid; grid-template-columns: 1fr; } .detail-card { background: rgba(10,
+24, 41, 0.7); border: 1px solid #2fc4ff; border-radius: 5px; padding: 15px;
+box-shadow: 0 0 10px rgba(47, 196, 255, 0.2); } .detail-card h3 { font-family:
+'Orbitron', sans-serif; color: #2fc4ff; margin-bottom: 10px; letter-spacing:
+0.05rem; } .detail-card p { margin-bottom: 15px; line-height: 1.4; }
+.detail-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+} .detail-stat { display: flex; justify-content: space-between; } .detail-stat
+.stat-label { font-family: 'Orbitron', sans-serif; font-weight: 600; } /* Story
+Tab */ .story-entries { display: flex; flex-direction: column; gap: 20px; }
+.story-entry { background: rgba(10, 24, 41, 0.7); border: 1px solid #2fc4ff;
+border-radius: 5px; padding: 15px; box-shadow: 0 0 10px rgba(47, 196, 255, 0.2);
+} .story-entry.recent { border-color: #4fff4f; box-shadow: 0 0 15px rgba(79,
+255, 79, 0.3); } .entry-date { font-family: 'Orbitron', sans-serif; font-size:
+0.9rem; color: #4fff4f; margin-bottom: 5px; } .entry-title { font-family:
+'Orbitron', sans-serif; font-weight: 700; font-size: 1.2rem; color: #ffffff;
+margin-bottom: 10px; letter-spacing: 0.05rem; } .entry-content p {
+margin-bottom: 10px; line-height: 1.4; } /* Footer */ .menu-footer { display:
+flex; justify-content: space-between; align-items: center; padding: 15px 20px;
+background: rgba(10, 24, 41, 0.7); border-top: 2px solid #2fc4ff; box-shadow: 0
+-2px 10px rgba(47, 196, 255, 0.3); } .controls-info { display: flex; gap: 20px;
+} .control-item { display: flex; align-items: center; color: #80cfff; }
+.control-icon { width: 20px; height: 20px; margin-right: 5px; } .control-icon
+svg { width: 100%; height: 100%; fill: currentColor; } .control-text {
+font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 600; }
+.system-id { display: flex; align-items: center; } .id-label { font-family:
+'Orbitron', sans-serif; font-weight: 600; margin-right: 5px; } .id-value {
+font-family: 'Orbitron', sans-serif; color: #ffffff; } /* Responsive design */
+@media (max-width: 768px) { .menu-header { flex-direction: column; gap: 10px;
+padding: 10px 15px; } .menu-title h1 { font-size: 1.8rem; } .menu-title h2 {
+font-size: 0.8rem; } .system-status { justify-content: space-around; width:
+100%; } .nav-item { padding: 5px 10px; } .nav-icon { width: 25px; height: 25px;
+} .nav-label { font-size: 0.8rem; } .stats-grid { grid-template-columns: 1fr; }
+.map-grid { grid-template-columns: repeat(5, 60px); grid-template-rows:
+repeat(4, 60px); } .controls-info { display: none; } } @media (max-width: 480px)
+{ .menu-title h1 { font-size: 1.5rem; } .menu-title h2 { font-size: 0.7rem; }
+.menu-nav { flex-wrap: wrap; } .nav-item { flex: 1 0 40%; } .map-grid {
+grid-template-columns: repeat(5, 50px); grid-template-rows: repeat(4, 50px); }
+.detail-stats { grid-template-columns: 1fr; } } ``` Finally, let me create the
+JavaScript file to handle the interactions: ``` /* dan-bach-menu\script.js */
+document.addEventListener('DOMContentLoaded', function() { // Tab navigation
+functionality const navItems = document.querySelectorAll('.nav-item'); const
+tabContents = document.querySelectorAll('.tab-content'); navItems.forEach(item
+=> { item.addEventListener('click', function() { const tabId =
+this.getAttribute('data-tab'); // Remove active class from all nav items and tab
+contents navItems.forEach(navItem => { navItem.classList.remove('active'); });
+tabContents.forEach(content => { content.classList.remove('active'); }); // Add
+active class to clicked nav item and corresponding tab content
+this.classList.add('active');
+document.getElementById(`${tabId}-tab`).classList.add('active'); // Add haptic
+feedback simulation (visual effect) this.style.transform = 'scale(0.95)';
+setTimeout(() => { this.style.transform = 'scale(1)'; }, 150); }); }); // System
+time functionality function updateTime() { const now = new Date(); const hours =
+String(now.getHours()).padStart(2, '0'); const minutes =
+String(now.getMinutes()).padStart(2, '0'); const seconds =
+String(now.getSeconds()).padStart(2, '0');
+document.getElementById('system-time').textContent =
+`${hours}:${minutes}:${seconds}`; } // Update time immediately and then every
+second updateTime(); setInterval(updateTime, 1000); // Interactive inventory
+items const inventoryItems = document.querySelectorAll('.inventory-item');
+inventoryItems.forEach(item => { if (!item.classList.contains('locked')) {
+item.addEventListener('click', function() { // If item is not equipped, toggle
+equip state if (!this.classList.contains('equipped')) { // Remove equipped class
+from other items in the same category (simplified logic)
+document.querySelectorAll('.inventory-item.equipped').forEach(equippedItem => {
+if (equippedItem !== this) { equippedItem.classList.remove('equipped');
+equippedItem.querySelector('.status-text').textContent = 'AVAILABLE';
+equippedItem.querySelector('.status-indicator').classList.remove('active'); }
+}); // Toggle equipped state on current item this.classList.toggle('equipped');
+if (this.classList.contains('equipped')) {
+this.querySelector('.status-text').textContent = 'EQUIPPED';
+this.querySelector('.status-indicator').classList.add('active'); } else {
+this.querySelector('.status-text').textContent = 'AVAILABLE';
+this.querySelector('.status-indicator').classList.remove('active'); } } //
+Visual feedback this.style.transform = 'scale(0.98)'; setTimeout(() => {
+this.style.transform = ''; }, 200); }); } }); // Interactive map cells const
+mapCells = document.querySelectorAll('.map-cell.visited'); mapCells.forEach(cell
+=> { cell.addEventListener('click', function() { // Remove current class from
+all cells document.querySelectorAll('.map-cell').forEach(mapCell => {
+mapCell.classList.remove('current'); }); // Add current class to clicked cell
+this.classList.add('current'); // Update location details (simplified - just
+changes title) const locationName = this.textContent;
+document.querySelector('.detail-card h3').textContent = locationName; // Visual
+feedback this.style.transform = 'scale(0.95)'; setTimeout(() => {
+this.style.transform = ''; }, 200); }); }); // Add some random flicker effects
+to status indicators const statusValues =
+document.querySelectorAll('.status-value'); statusValues.forEach(value => {
+setInterval(() => { if (Math.random() > 0.8) { value.style.opacity = '0.7';
+setTimeout(() => { value.style.opacity = '1'; }, 100); } }, 5000); }); // Add a
+subtle animation to stat bars const statFills =
+document.querySelectorAll('.stat-fill'); statFills.forEach(fill => { const
+targetWidth = fill.style.width; fill.style.width = '0'; setTimeout(() => {
+fill.style.width = targetWidth; }, 500); }); // Add keyboard navigation
+document.addEventListener('keydown', function(e) { const activeNavIndex =
+Array.from(navItems).findIndex(item => item.classList.contains('active')); if
+(e.key === 'ArrowLeft' && activeNavIndex > 0) { navItems[activeNavIndex -
+1].click(); } else if (e.key === 'ArrowRight' && activeNavIndex <
+navItems.length - 1) { navItems[activeNavIndex + 1].click(); } }); // Add sound
+effect simulation (visual feedback instead of actual sound) function
+simulateInteractionFeedback(element) { element.style.boxShadow = '0 0 20px
+rgba(47, 196, 255, 0.7)'; setTimeout(() => { element.style.boxShadow = ''; },
+300); } // Apply feedback to clickable elements
+document.querySelectorAll('button, .nav-item, .inventory-item:not(.locked),
+.map-cell.visited').forEach(element => { element.addEventListener('click',
+function() { simulateInteractionFeedback(this); }); }); }); ``` I've created a
+complete Metroid-style menu interface for your M.E.N.U. system that: 1. Is fully
+responsive and adapts to both phone and laptop screens 2. Has a sci-fi aesthetic
+reminiscent of Metroid games 3. Includes all four menu items you requested: -
+Stats: Shows health, energy, oxygen, armor bars, mission progress, and location
+data - Inventory: Displays equipment with icons, descriptions, and equip/lock
+status - Map: Interactive grid map showing different regions with current
+location highlighted - Story: Mission log entries with dates and content 4.
+Features several interactive elements: - Tab navigation with visual feedback -
+Real-time system clock - Clickable inventory items that can be equipped -
+Interactive map cells to change location - Keyboard navigation support (arrow
+keys to switch tabs) - Visual effects like scanlines, glowing borders, and hover
+states The design uses a blue-green color scheme typical of sci-fi interfaces,
+with glowing elements, scanline effects, and a clean, high-tech layout. It's
+built to work well on both mobile and desktop devices, with responsive
+breakpoints to adjust the layout for smaller screens. You can open the
+`index.html` file in a browser to see it in action. Would you like me to explain
+any specific part of the implementation or make any adjustments to the design?
