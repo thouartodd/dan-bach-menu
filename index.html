@@ -118,6 +118,29 @@
             </footer>
         </div>
 
+        <!-- Confirmation Dialog for Consumable Usage -->
+        <div class="confirmation-dialog" id="consumable-dialog">
+            <div class="dialog-content">
+                <div class="dialog-header">
+                    <h3>Use Item</h3>
+                </div>
+                <div class="dialog-body">
+                    <p id="consumable-message">Use one of this item?</p>
+                    <div class="dialog-item-info">
+                        <div class="dialog-item-icon" id="dialog-item-icon"></div>
+                        <div class="dialog-item-details">
+                            <div class="dialog-item-name" id="dialog-item-name"></div>
+                            <div class="dialog-item-quantity" id="dialog-item-quantity"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog-footer">
+                    <button class="dialog-button dialog-cancel" id="dialog-cancel">NO</button>
+                    <button class="dialog-button dialog-confirm" id="dialog-confirm">YES</button>
+                </div>
+            </div>
+        </div>
+
         <script src="js/constants.js"></script>
         <script src="script.js"></script>
     </body>

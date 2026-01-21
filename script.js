@@ -17,6 +17,17 @@ let itemsData = null;
 // Global flag to track if click handler is enabled
 let clickHandlerEnabled = true;
 
+// Global variable to store the current consumable being used
+let currentConsumable = null;
+
+// Global variables to store dialog elements
+let dialog = null;
+let dialogName = null;
+let dialogQuantity = null;
+let dialogIcon = null;
+let confirmBtn = null;
+let cancelBtn = null;
+
 // Load items from JSON file and populate the inventory
 async function loadItems() {
   try {
@@ -90,6 +101,9 @@ function getItemStatus(item) {
   if (item.locked) {
     return "LOCKED";
   } else if (item.category === "consumable") {
+    // Show quantity for consumables
+    return `${item.quantity}`;
+  } else if (item.category === "key") {
     return "AVAILABLE";
   } else if (item.equipped) {
     return "EQUIPPED";
@@ -271,9 +285,27 @@ function initializeContent() {
     const itemData = window.itemsData.items.find((i) => i.id === itemId);
     if (!itemData) return;
 
-    // Skip equip/unequip for locked or consumable items
-    if (itemData.locked || itemData.category === "consumable") {
-      // Visual feedback for locked/consumable items (but no state change)
+    // Handle consumable usage dialog
+    if (itemData.category === "consumable") {
+      // Check if there are any items left
+      if (itemData.quantity <= 0) {
+        // Visual feedback for empty consumables
+        item.style.transform = "scale(0.98)";
+        setTimeout(() => {
+          item.style.transform = "";
+        }, 200);
+        return;
+      }
+
+      // Store the current consumable and show the dialog
+      currentConsumable = itemData;
+      showConsumableDialog(itemData);
+      return;
+    }
+
+    // Skip equip/unequip for locked or key items
+    if (itemData.locked || itemData.category === "key") {
+      // Visual feedback for locked/key items (but no state change)
       item.style.transform = "scale(0.98)";
       setTimeout(() => {
         item.style.transform = "";
@@ -358,6 +390,84 @@ function initializeContent() {
       }, 200);
     });
   });
+
+  // Function to show the consumable usage dialog
+  function showConsumableDialog(item) {
+    // Test if we can find any element by ID
+    console.log("Test element:", document.getElementById("menu-container"));
+
+    // Get dialog elements
+    const dialog = document.getElementById("consumable-dialog");
+    const dialogName = document.getElementById("dialog-item-name");
+    const dialogQuantity = document.getElementById("dialog-item-quantity");
+    const dialogIcon = document.getElementById("dialog-item-icon");
+
+    console.log("Dialog element:", dialog);
+    console.log("Dialog name element:", dialogName);
+
+    if (!dialogName || !dialogQuantity || !dialogIcon || !dialog) {
+      console.error("Dialog elements not found");
+      return;
+    }
+
+    // Set the dialog content
+    dialogName.textContent = item.name;
+    dialogQuantity.textContent = `Quantity: ${item.quantity}`;
+
+    // Set the item icon
+    if (item.icon && item.icon.trim() !== "") {
+      dialogIcon.innerHTML = `<img src="../assets/images/items/${item.icon}" alt="${item.name}" />`;
+    } else {
+      dialogIcon.innerHTML = getItemIcon(item.category);
+    }
+
+    // Show the dialog with a gray-out effect
+    dialog.style.display = "flex";
+
+    // Add event listeners to buttons
+    const confirmBtn = document.getElementById("dialog-confirm");
+    const cancelBtn = document.getElementById("dialog-cancel");
+
+    // Remove any existing event listeners to prevent duplicates
+    const newConfirmBtn = confirmBtn.cloneNode(true);
+    const newCancelBtn = cancelBtn.cloneNode(true);
+    confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+
+    // Add event listeners
+    newConfirmBtn.addEventListener("click", () => {
+      // Use the consumable (reduce quantity by 1)
+      if (currentConsumable && currentConsumable.quantity > 0) {
+        currentConsumable.quantity--;
+
+        // Update the UI for this item
+        document.querySelectorAll(".inventory-item").forEach((uiItem) => {
+          const uiItemId = uiItem.dataset.itemId;
+          const uiItemData = window.itemsData.items.find((i) => i.id === uiItemId);
+
+          if (uiItemData && uiItemData.id === currentConsumable.id) {
+            const status = getItemStatus(uiItemData);
+            uiItem.querySelector(".status-text").textContent = status;
+
+            // Hide the item if quantity reaches 0
+            if (uiItemData.quantity <= 0) {
+              uiItem.classList.add("locked");
+            }
+          }
+        });
+      }
+
+      // Hide the dialog
+      dialog.style.display = "none";
+      currentConsumable = null;
+    });
+
+    newCancelBtn.addEventListener("click", () => {
+      // Hide the dialog without using the item
+      dialog.style.display = "none";
+      currentConsumable = null;
+    });
+  }
 
   // Add some random flicker effects to status indicators
   const statusValues = document.querySelectorAll(".status-value");
