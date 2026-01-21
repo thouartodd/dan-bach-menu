@@ -809,6 +809,11 @@ body {
     box-shadow: 0 0 15px rgba(79, 255, 79, 0.3);
 }
 
+.story-entry.active {
+    border-color: #4fff4f;
+    box-shadow: 0 0 15px rgba(79, 255, 79, 0.3);
+}
+
 .entry-date {
     font-family: "Orbitron", sans-serif;
     font-size: 0.9rem;

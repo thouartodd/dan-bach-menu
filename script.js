@@ -112,7 +112,7 @@ function getItemStatus(item) {
   }
 }
 
-// Load story entries from JSON file and populate the story log
+// Load story entries from JSON file and populate story log
 async function loadStory() {
   try {
     const response = await fetch("assets/story/story.json");
@@ -125,14 +125,19 @@ async function loadStory() {
 
     storyEntries.innerHTML = ""; // Clear existing entries
 
-    data.entries.forEach((entry) => {
+    // Sort entries by date in descending alphanumeric order
+    const sortedEntries = [...data.entries].sort((a, b) => {
+      return b.date.localeCompare(a.date);
+    });
+
+    sortedEntries.forEach((entry) => {
       const template = document.getElementById("story-entry-template");
       const clone = document.importNode(template.content, true);
 
       // Set entry content
       const entryElement = clone.querySelector(".story-entry");
-      if (entry.recent) {
-        entryElement.classList.add("recent");
+      if (entry.active) {
+        entryElement.classList.add("active");
       }
 
       clone.querySelector(".entry-date").textContent = entry.date;

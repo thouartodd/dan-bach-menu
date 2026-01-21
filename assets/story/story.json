@@ -8,7 +8,7 @@
         "Touchdown confirmed on planet Zebes. Atmosphere breathable but contains unknown particulates. Beginning preliminary survey of landing zone in Crateria region.",
         "Energy readings suggest significant activity below surface. Scans indicate multiple distinct biomes with unique environmental signatures."
       ],
-      "recent": false
+      "active": false
     },
     {
       "id": "entry-2",
@@ -18,7 +18,7 @@
         "Encountered hostile lifeforms in Brinstar region. Indigenous species demonstrate aggressive territorial behavior. Combat protocols engaged successfully.",
         "Discovered ruins of unknown origin with technology not matching Space Pirate database. Possible third party presence on planet."
       ],
-      "recent": false
+      "active": false
     },
     {
       "id": "entry-3",
@@ -28,7 +28,7 @@
         "Detected unusual energy signature from deep underground. Frequency pattern matches no known technology in Federation database.",
         "Signal appears to be a distress call but with corrupted data. Source appears to be mobile and changing location. Currently tracking trajectory."
       ],
-      "recent": false
+      "active": false
     },
     {
       "id": "entry-4",
@@ -38,7 +38,7 @@
         "Confirmed presence of Space Pirate operations in Norfair region. High-temperature environment suggests they may be exploiting local geothermal energy sources.",
         "Intercepted transmissions indicate they are searching for something referred to as \"The Artifact.\" Cross-referencing with Federation databases yields no match."
       ],
-      "recent": false
+      "active": false
     },
     {
       "id": "entry-5",
@@ -48,7 +48,7 @@
         "Primary mission directive updated: Investigate source of anomalous signal and locate \"The Artifact\" before Space Pirate forces.",
         "Environmental hazards in Norfair region require specialized equipment. Progress to deeper areas currently blocked."
       ],
-      "recent": true
+      "active": true
     }
   ]
 }
