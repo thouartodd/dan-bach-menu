@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "id": "varia-suit",
+      "name": "VARIA SUIT",
+      "description": "Standard issue exosuit with enhanced environmental protection",
+      "icon": "item_placeholder.webp",
+      "status": "",
+      "category": "suit",
+      "locked": false,
+      "visible": true,
+      "equipped": true,
+      "quantity": 1
+    },
+    {
+      "id": "morph-ball",
+      "name": "MORPH BALL",
+      "description": "Transformatory system for accessing narrow passages",
+      "icon": "",
+      "status": "",
+      "category": "suit",
+      "locked": false,
+      "visible": true,
+      "equipped": false,
+      "quantity": 1
+    },
+    {
+      "id": "gravity-suit",
+      "name": "GRAVITY SUIT",
+      "description": "Advanced exosuit with enhanced mobility underwater",
+      "icon": "item_placeholder.webp",
+      "status": "",
+      "category": "suit",
+      "locked": true,
+      "visible": false,
+      "equipped": false,
+      "quantity": 1
+    },
+    {
+      "id": "missile-launcher",
+      "name": "MISSILE LAUNCHER",
+      "description": "High-explosive projectiles for penetrating defenses",
+      "icon": "item_placeholder.webp",
+      "status": "",
+      "category": "weapon",
+      "locked": false,
+      "visible": true,
+      "equipped": false,
+      "quantity": 1
+    },
+    {
+      "id": "power-beam",
+      "name": "POWER BEAM",
+      "description": "Standard issue energy weapon",
+      "icon": "item_placeholder.webp",
+      "status": "",
+      "category": "weapon",
+      "locked": false,
+      "visible": true,
+      "equipped": true,
+      "quantity": 1
+    },
+    {
+      "id": "wave-beam",
+      "name": "WAVE BEAM",
+      "description": "Energy weapon capable of passing through obstacles",
+      "icon": "item_placeholder.webp",
+      "status": "",
+      "category": "weapon",
+      "locked": true,
+      "visible": true,
+      "equipped": false,
+      "quantity": 1
+    },
+    {
+      "id": "health-potion",
+      "name": "HEALTH POTION",
+      "description": "Restores a small amount of health",
+      "icon": "item_placeholder.webp",
+      "status": "",
+      "category": "consumable",
+      "locked": false,
+      "visible": true,
+      "equipped": false,
+      "quantity": 5
+    },
+    {
+      "id": "red-key",
+      "name": "RED KEY",
+      "description": "Shifts world tendency towards red",
+      "icon": "",
+      "status": "",
+      "category": "key",
+      "locked": true,
+      "visible": true,
+      "equipped": false,
+      "quantity": 1
+    },
+    {
+      "id": "green-key",
+      "name": "GREEN KEY",
+      "description": "Shifts world tendency towards green",
+      "icon": "",
+      "status": "",
+      "category": "key",
+      "locked": false,
+      "visible": true,
+      "equipped": false,
+      "quantity": 1
+    },
+    {
+      "id": "blue-key",
+      "name": "BLUE KEY",
+      "description": "Shifts world tendency towards blue",
+      "icon": "",
+      "status": "",
+      "category": "key",
+      "locked": true,
+      "visible": true,
+      "equipped": false,
+      "quantity": 1
+    }
+  ]
+}
