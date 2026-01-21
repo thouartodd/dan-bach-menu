@@ -151,10 +151,73 @@ async function loadStory() {
         contentContainer.appendChild(p);
       });
 
+      // Show view button if cutscene exists
+      const viewButton = clone.querySelector(".view-cutscene-btn");
+      if (entry.cutscene) {
+        viewButton.style.display = "block";
+        viewButton.setAttribute("data-cutscene", entry.cutscene);
+
+        // Add click event listener for view button
+        viewButton.addEventListener("click", function () {
+          showCutscene(entry.cutscene);
+        });
+      }
+
       storyEntries.appendChild(clone);
     });
   } catch (error) {
-    console.error("Error loading story:", error);
+    console.error("Error loading content:", error);
+  }
+}
+
+function showCutscene(cutsceneId) {
+  try {
+    // Create a modal to display the cutscene
+    const modal = document.createElement("div");
+    modal.className = "cutscene-modal";
+    modal.style.display = "flex";
+    modal.innerHTML = `
+      <div class="cutscene-content">
+        <div class="cutscene-header">
+          <h3>CUTSCENE</h3>
+          <button class="cutscene-close">&times;</button>
+        </div>
+        <div class="cutscene-body">
+          <p>Playing cutscene: ${cutsceneId}</p>
+          <p>This would typically display the cutscene content for ${cutsceneId}</p>
+        </div>
+      </div>
+    `;
+
+    // Add to document
+    document.body.appendChild(modal);
+
+    // Add event listeners
+    const closeBtn = modal.querySelector(".cutscene-close");
+    closeBtn.addEventListener("click", function () {
+      document.body.removeChild(modal);
+    });
+
+    // Close when clicking outside the modal content
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        document.body.removeChild(modal);
+      }
+    });
+
+    // Close on ESC key
+    const keyHandler = function (e) {
+      if (e.key === "Escape") {
+        document.body.removeChild(modal);
+        document.removeEventListener("keydown", keyHandler);
+      }
+    };
+    document.addEventListener("keydown", keyHandler);
+
+    // Focus on close button for accessibility
+    closeBtn.focus();
+  } catch (error) {
+    console.error("Error showing cutscene:", error);
   }
 }
 
