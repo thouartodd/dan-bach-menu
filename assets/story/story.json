@@ -1,0 +1,54 @@
+{
+  "entries": [
+    {
+      "id": "entry-1",
+      "date": "LOG 078.34.5",
+      "title": "Initial Landing on Zebes",
+      "content": [
+        "Touchdown confirmed on planet Zebes. Atmosphere breathable but contains unknown particulates. Beginning preliminary survey of landing zone in Crateria region.",
+        "Energy readings suggest significant activity below surface. Scans indicate multiple distinct biomes with unique environmental signatures."
+      ],
+      "recent": false
+    },
+    {
+      "id": "entry-2",
+      "date": "LOG 078.34.8",
+      "title": "First Contact",
+      "content": [
+        "Encountered hostile lifeforms in Brinstar region. Indigenous species demonstrate aggressive territorial behavior. Combat protocols engaged successfully.",
+        "Discovered ruins of unknown origin with technology not matching Space Pirate database. Possible third party presence on planet."
+      ],
+      "recent": false
+    },
+    {
+      "id": "entry-3",
+      "date": "LOG 078.35.1",
+      "title": "Anomalous Signal",
+      "content": [
+        "Detected unusual energy signature from deep underground. Frequency pattern matches no known technology in Federation database.",
+        "Signal appears to be a distress call but with corrupted data. Source appears to be mobile and changing location. Currently tracking trajectory."
+      ],
+      "recent": false
+    },
+    {
+      "id": "entry-4",
+      "date": "LOG 078.35.3",
+      "title": "Space Pirate Activity",
+      "content": [
+        "Confirmed presence of Space Pirate operations in Norfair region. High-temperature environment suggests they may be exploiting local geothermal energy sources.",
+        "Intercepted transmissions indicate they are searching for something referred to as \"The Artifact.\" Cross-referencing with Federation databases yields no match."
+      ],
+      "recent": false
+    },
+    {
+      "id": "entry-5",
+      "date": "LOG 078.35.4",
+      "title": "Current Objective",
+      "content": [
+        "Primary mission directive updated: Investigate source of anomalous signal and locate \"The Artifact\" before Space Pirate forces.",
+        "Environmental hazards in Norfair region require specialized equipment. Progress to deeper areas currently blocked."
+      ],
+      "recent": true
+    }
+  ]
+}

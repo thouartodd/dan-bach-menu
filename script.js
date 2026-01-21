@@ -112,6 +112,47 @@ function getItemStatus(item) {
   }
 }
 
+// Load story entries from JSON file and populate the story log
+async function loadStory() {
+  try {
+    const response = await fetch("assets/story/story.json");
+    if (!response.ok) throw new Error("Could not load story");
+
+    const data = await response.json();
+    const storyEntries = document.getElementById("story-entries");
+
+    if (!storyEntries) return; // Not on story page
+
+    storyEntries.innerHTML = ""; // Clear existing entries
+
+    data.entries.forEach((entry) => {
+      const template = document.getElementById("story-entry-template");
+      const clone = document.importNode(template.content, true);
+
+      // Set entry content
+      const entryElement = clone.querySelector(".story-entry");
+      if (entry.recent) {
+        entryElement.classList.add("recent");
+      }
+
+      clone.querySelector(".entry-date").textContent = entry.date;
+      clone.querySelector(".entry-title").textContent = entry.title;
+
+      // Create paragraphs for each content item
+      const contentContainer = clone.querySelector(".entry-content");
+      entry.content.forEach((paragraph) => {
+        const p = document.createElement("p");
+        p.textContent = paragraph;
+        contentContainer.appendChild(p);
+      });
+
+      storyEntries.appendChild(clone);
+    });
+  } catch (error) {
+    console.error("Error loading story:", error);
+  }
+}
+
 // Returns appropriate SVG icon based on item category
 function getItemIcon(category) {
   switch (category) {
@@ -170,6 +211,12 @@ function initializeContent() {
   if (document.getElementById("inventory-grid")) {
     loadItems();
   }
+
+  // Load story entries if on story page
+  if (document.getElementById("story-entries")) {
+    loadStory();
+  }
+
   // Populate character information
   if (document.querySelector("#info-item-1 .info-label")) {
     document.querySelector("#info-item-1 .info-label").textContent = STATS_DESCRIPTION_1_NAME;
