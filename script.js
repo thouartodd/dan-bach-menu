@@ -11,6 +11,78 @@ function updateTime() {
   }
 }
 
+// Load items from JSON file and populate the inventory
+async function loadItems() {
+  try {
+    const response = await fetch("assets/items/items.json");
+    if (!response.ok) throw new Error("Could not load items");
+
+    const data = await response.json();
+    const inventoryGrid = document.getElementById("inventory-grid");
+
+    if (!inventoryGrid) return; // Not on inventory page
+
+    inventoryGrid.innerHTML = ""; // Clear existing items
+
+    data.items.forEach((item) => {
+      const template = document.getElementById("inventory-item-template");
+      const clone = document.importNode(template.content, true);
+
+      // Set classes based on item properties
+      const itemElement = clone.querySelector(".inventory-item");
+      if (item.locked) {
+        itemElement.classList.add("locked");
+      }
+      if (item.status === "EQUIPPED") {
+        itemElement.classList.add("equipped");
+      }
+
+      // Set item information
+      clone.querySelector(".item-name").textContent = item.name;
+      clone.querySelector(".item-description").textContent = item.description;
+      clone.querySelector(".status-text").textContent = item.status;
+
+      // Add icon from JSON if provided, otherwise use category-based SVG
+      const iconContainer = clone.querySelector(".item-icon");
+      if (item.icon && item.icon.trim() !== "") {
+        // Use base path for all item icons
+        const basePath = "../assets/images/items/";
+        iconContainer.innerHTML = `<img src="${basePath}${item.icon}" alt="${item.name}" />`;
+      } else {
+        iconContainer.innerHTML = getItemIcon(item.category);
+      }
+
+      // Set status indicator
+      const statusIndicator = clone.querySelector(".status-indicator");
+      if (item.status === "EQUIPPED" || item.status.includes("/")) {
+        statusIndicator.classList.add("active");
+      }
+
+      inventoryGrid.appendChild(clone);
+    });
+  } catch (error) {
+    console.error("Error loading items:", error);
+  }
+}
+
+// Returns appropriate SVG icon based on item category
+function getItemIcon(category) {
+  switch (category) {
+    case "suit":
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M8.5,8.64L6.5,11.39L3.5,7.39L7.5,3.39L16.5,3.39L20.5,7.39L17.5,11.39L15.5,8.64L12,12.14L8.5,8.64M15.5,15.36L17.5,12.61L20.5,16.61L16.5,20.61L7.5,20.61L3.5,16.61L6.5,12.61L8.5,15.36L12,11.86L15.5,15.36Z" />
+      </svg>`;
+    case "weapon":
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M17,19H7V5H17M17,3H7C5.89,3 5,3.89 5,5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V5C19,3.89 18.1,3 17,3Z" />
+      </svg>`;
+    default:
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19Z" />
+      </svg>`;
+  }
+}
+
 async function loadContent(page, addHistory = true) {
   const contentArea = document.getElementById("content-area");
 
@@ -47,6 +119,10 @@ window.onpopstate = function (event) {
 
 // Function to initialize content and set up event handlers
 function initializeContent() {
+  // Load items if on inventory page
+  if (document.getElementById("inventory-grid")) {
+    loadItems();
+  }
   // Populate character information
   if (document.querySelector("#info-item-1 .info-label")) {
     document.querySelector("#info-item-1 .info-label").textContent = STATS_DESCRIPTION_1_NAME;
@@ -146,39 +222,48 @@ function initializeContent() {
     document.querySelector("#detail-stat-3 .stat-value").textContent = MAP_TOXICITY_VALUE;
   }
 
-  // Interactive inventory items
-  const inventoryItems = document.querySelectorAll(".inventory-item");
-  inventoryItems.forEach((item) => {
+  // Interactive inventory items - use event delegation for dynamically loaded items
+  document.addEventListener("click", function (e) {
+    const item = e.target.closest(".inventory-item");
+    if (!item) return;
+
     if (!item.classList.contains("locked")) {
-      item.addEventListener("click", function () {
-        // If item is not equipped, toggle equip state
-        if (!this.classList.contains("equipped")) {
-          // Remove equipped class from other items in the same category (simplified logic)
-          document.querySelectorAll(".inventory-item.equipped").forEach((equippedItem) => {
-            if (equippedItem !== this) {
-              equippedItem.classList.remove("equipped");
-              equippedItem.querySelector(".status-text").textContent = "AVAILABLE";
-              equippedItem.querySelector(".status-indicator").classList.remove("active");
-            }
-          });
+      // If item is not equipped, toggle equip state
+      if (!item.classList.contains("equipped")) {
+        // Remove equipped class from other items in the same category (simplified logic)
+        document.querySelectorAll(".inventory-item.equipped").forEach((equippedItem) => {
+          if (equippedItem !== item) {
+            equippedItem.classList.remove("equipped");
+            const statusText = equippedItem.querySelector(".status-text");
+            const statusIndicator = equippedItem.querySelector(".status-indicator");
 
-          // Toggle equipped state on current item
-          this.classList.toggle("equipped");
-          if (this.classList.contains("equipped")) {
-            this.querySelector(".status-text").textContent = "EQUIPPED";
-            this.querySelector(".status-indicator").classList.add("active");
-          } else {
-            this.querySelector(".status-text").textContent = "AVAILABLE";
-            this.querySelector(".status-indicator").classList.remove("active");
+            if (statusText) statusText.textContent = "AVAILABLE";
+            if (statusIndicator) statusIndicator.classList.remove("active");
           }
-        }
+        });
 
-        // Visual feedback
-        this.style.transform = "scale(0.98)";
-        setTimeout(() => {
-          this.style.transform = "";
-        }, 200);
-      });
+        // Toggle equipped state on current item
+        item.classList.toggle("equipped");
+        if (item.classList.contains("equipped")) {
+          const statusText = item.querySelector(".status-text");
+          const statusIndicator = item.querySelector(".status-indicator");
+
+          if (statusText) statusText.textContent = "EQUIPPED";
+          if (statusIndicator) statusIndicator.classList.add("active");
+        } else {
+          const statusText = item.querySelector(".status-text");
+          const statusIndicator = item.querySelector(".status-indicator");
+
+          if (statusText) statusText.textContent = "AVAILABLE";
+          if (statusIndicator) statusIndicator.classList.remove("active");
+        }
+      }
+
+      // Visual feedback
+      item.style.transform = "scale(0.98)";
+      setTimeout(() => {
+        item.style.transform = "";
+      }, 200);
     }
   });
 

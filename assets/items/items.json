@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "id": "varia-suit",
+      "name": "VARIA SUIT",
+      "description": "Standard issue exosuit with enhanced environmental protection",
+      "icon": "item_placeholder.webp",
+      "status": "EQUIPPED",
+      "category": "suit",
+      "locked": false
+    },
+    {
+      "id": "morph-ball",
+      "name": "MORPH BALL",
+      "description": "Transformatory system for accessing narrow passages",
+      "icon": "",
+      "status": "AVAILABLE",
+      "category": "suit",
+      "locked": false
+    },
+    {
+      "id": "gravity-suit",
+      "name": "GRAVITY SUIT",
+      "description": "Advanced exosuit with enhanced mobility underwater",
+      "icon": "item_placeholder.webp",
+      "status": "LOCKED",
+      "category": "suit",
+      "locked": true
+    },
+    {
+      "id": "missiles",
+      "name": "MISSILES",
+      "description": "High-explosive projectiles for penetrating defenses",
+      "icon": "item_placeholder.webp",
+      "status": "120/250",
+      "category": "weapon",
+      "locked": false
+    },
+    {
+      "id": "power-beam",
+      "name": "POWER BEAM",
+      "description": "Standard issue energy weapon",
+      "icon": "item_placeholder.webp",
+      "status": "EQUIPPED",
+      "category": "weapon",
+      "locked": false
+    },
+    {
+      "id": "wave-beam",
+      "name": "WAVE BEAM",
+      "description": "Energy weapon capable of passing through obstacles",
+      "icon": "item_placeholder.webp",
+      "status": "LOCKED",
+      "category": "weapon",
+      "locked": true
+    }
+  ]
+}

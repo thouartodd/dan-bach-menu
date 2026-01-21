@@ -17,14 +17,14 @@ const STATS_DESCRIPTION_4_VALUE = "Lost";
 const STATS_HEALTH_NAME = "HEALTH";
 const STATS_HEALTH_VALUE = 85;
 
+const STATS_ARMOR_NAME = "ARMOR";
+const STATS_ARMOR_VALUE = 70;
+
 const STATS_ENERGY_NAME = "ENERGY";
 const STATS_ENERGY_VALUE = 60;
 
 const STATS_OXYGEN_NAME = "OXYGEN";
 const STATS_OXYGEN_VALUE = 95;
-
-const STATS_ARMOR_NAME = "ARMOR";
-const STATS_ARMOR_VALUE = 70;
 
 // Mission Progress
 const MISSION_1_NAME = "Investigate Signal Anomaly";
@@ -48,8 +48,7 @@ const LOCATION_DEPTH_VALUE = "-247m";
 
 // Map Location Details
 const MAP_LOCATION_NAME = "BRINSTAR";
-const MAP_LOCATION_DESCRIPTION =
-  "Surface region characterized by dense jungle vegetation and high humidity. Environment is suitable for most lifeforms.";
+const MAP_LOCATION_DESCRIPTION = "Surface region characterized by dense jungle vegetation and high humidity. Environment is suitable for most lifeforms.";
 
 const MAP_TEMP_NAME = "TEMP";
 const MAP_TEMP_VALUE = "28.4°C";
