@@ -8,7 +8,8 @@
       "status": "EQUIPPED",
       "category": "suit",
       "locked": false,
-      "visible": true
+      "visible": true,
+      "equipped": true
     },
     {
       "id": "morph-ball",
@@ -18,7 +19,8 @@
       "status": "AVAILABLE",
       "category": "suit",
       "locked": false,
-      "visible": true
+      "visible": true,
+      "equipped": false
     },
     {
       "id": "gravity-suit",
@@ -28,7 +30,8 @@
       "status": "LOCKED",
       "category": "suit",
       "locked": true,
-      "visible": false
+      "visible": false,
+      "equipped": false
     },
     {
       "id": "missiles",
@@ -38,7 +41,8 @@
       "status": "120/250",
       "category": "weapon",
       "locked": false,
-      "visible": true
+      "visible": true,
+      "equipped": false
     },
     {
       "id": "power-beam",
@@ -48,7 +52,8 @@
       "status": "EQUIPPED",
       "category": "weapon",
       "locked": false,
-      "visible": true
+      "visible": true,
+      "equipped": true
     },
     {
       "id": "wave-beam",
@@ -58,7 +63,19 @@
       "status": "LOCKED",
       "category": "weapon",
       "locked": true,
-      "visible": false
+      "visible": true,
+      "equipped": false
+    },
+    {
+      "id": "health-potion",
+      "name": "HEALTH POTION",
+      "description": "Restores a small amount of health",
+      "icon": "item_placeholder.webp",
+      "status": "AVAILABLE",
+      "category": "consumable",
+      "locked": false,
+      "visible": true,
+      "equipped": false
     }
   ]
 }

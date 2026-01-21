@@ -11,39 +11,52 @@ function updateTime() {
   }
 }
 
+// Global variable to store items data
+let itemsData = null;
+
 // Load items from JSON file and populate the inventory
 async function loadItems() {
   try {
     const response = await fetch("assets/items/items.json");
     if (!response.ok) throw new Error("Could not load items");
 
-    const data = await response.json();
+    // Store the data globally for later use
+    itemsData = await response.json();
+
+    // Debug: Log initial item states
+    console.log("Initial item states:");
+    itemsData.items.forEach((item) => {
+      console.log(`${item.name}: equipped=${item.equipped}, locked=${item.locked}`);
+    });
     const inventoryGrid = document.getElementById("inventory-grid");
 
     if (!inventoryGrid) return; // Not on inventory page
 
     inventoryGrid.innerHTML = ""; // Clear existing items
 
-    data.items.forEach((item) => {
+    itemsData.items.forEach((item) => {
       // Skip items that are not visible
       if (item.visible === false) return;
 
       const template = document.getElementById("inventory-item-template");
       const clone = document.importNode(template.content, true);
 
+      // Determine status based on locked and equipped
+      const status = getItemStatus(item);
+
       // Set classes based on item properties
       const itemElement = clone.querySelector(".inventory-item");
       if (item.locked) {
         itemElement.classList.add("locked");
       }
-      if (item.status === "EQUIPPED") {
+      if (item.equipped === true && !item.locked) {
         itemElement.classList.add("equipped");
       }
 
       // Set item information
       clone.querySelector(".item-name").textContent = item.name;
       clone.querySelector(".item-description").textContent = item.description;
-      clone.querySelector(".status-text").textContent = item.status;
+      clone.querySelector(".status-text").textContent = status;
 
       // Add icon from JSON if provided, otherwise use category-based SVG
       const iconContainer = clone.querySelector(".item-icon");
@@ -57,14 +70,33 @@ async function loadItems() {
 
       // Set status indicator
       const statusIndicator = clone.querySelector(".status-indicator");
-      if (item.status === "EQUIPPED" || item.status.includes("/")) {
+      if (status === "EQUIPPED" || status.includes("/")) {
         statusIndicator.classList.add("active");
       }
 
+      // Store the item data in the element for click handling
+      itemElement.dataset.itemId = item.id;
+
       inventoryGrid.appendChild(clone);
     });
+
+    // Store the items data globally for click handling
+    window.itemsData = itemsData;
   } catch (error) {
     console.error("Error loading items:", error);
+  }
+}
+
+// Determines the status text based on item properties
+function getItemStatus(item) {
+  if (item.locked) {
+    return "LOCKED";
+  } else if (item.category === "consumable") {
+    return "AVAILABLE";
+  } else if (item.equipped) {
+    return "EQUIPPED";
+  } else {
+    return "AVAILABLE";
   }
 }
 
@@ -230,44 +262,78 @@ function initializeContent() {
     const item = e.target.closest(".inventory-item");
     if (!item) return;
 
-    if (!item.classList.contains("locked")) {
-      // If item is not equipped, toggle equip state
-      if (!item.classList.contains("equipped")) {
-        // Remove equipped class from other items in the same category (simplified logic)
-        document.querySelectorAll(".inventory-item.equipped").forEach((equippedItem) => {
-          if (equippedItem !== item) {
-            equippedItem.classList.remove("equipped");
-            const statusText = equippedItem.querySelector(".status-text");
-            const statusIndicator = equippedItem.querySelector(".status-indicator");
+    // Prevent duplicate click handling
+    if (e.detail > 1) return;
 
-            if (statusText) statusText.textContent = "AVAILABLE";
-            if (statusIndicator) statusIndicator.classList.remove("active");
-          }
-        });
+    // Get the item ID from the data attribute
+    const itemId = item.dataset.itemId;
+    if (!itemId || !window.itemsData) return;
 
-        // Toggle equipped state on current item
-        item.classList.toggle("equipped");
-        if (item.classList.contains("equipped")) {
-          const statusText = item.querySelector(".status-text");
-          const statusIndicator = item.querySelector(".status-indicator");
+    // Find the clicked item in the global data
+    const itemData = window.itemsData.items.find((i) => i.id === itemId);
+    if (!itemData) return;
 
-          if (statusText) statusText.textContent = "EQUIPPED";
-          if (statusIndicator) statusIndicator.classList.add("active");
-        } else {
-          const statusText = item.querySelector(".status-text");
-          const statusIndicator = item.querySelector(".status-indicator");
-
-          if (statusText) statusText.textContent = "AVAILABLE";
-          if (statusIndicator) statusIndicator.classList.remove("active");
-        }
-      }
-
-      // Visual feedback
+    // Skip equip/unequip for locked or consumable items
+    if (itemData.locked || itemData.category === "consumable") {
+      // Visual feedback for locked/consumable items (but no state change)
       item.style.transform = "scale(0.98)";
       setTimeout(() => {
         item.style.transform = "";
       }, 200);
+      return;
     }
+
+    // Toggle equipped state for the clicked item
+    const wasEquipped = itemData.equipped === true;
+
+    console.log(`Clicked ${itemData.name}, was equipped: ${wasEquipped}`);
+
+    if (!wasEquipped) {
+      // Equip the clicked item
+      itemData.equipped = true;
+
+      // Unequip all other items in the same category
+      window.itemsData.items.forEach((i) => {
+        if (i.id !== itemId && i.category === itemData.category) {
+          i.equipped = false;
+          console.log(`Unequipping ${i.name} in the same category`);
+        }
+      });
+    } else {
+      // Unequip the clicked item
+      itemData.equipped = false;
+    }
+
+    // Update the UI for all items to reflect the new state
+    document.querySelectorAll(".inventory-item").forEach((uiItem) => {
+      const uiItemId = uiItem.dataset.itemId;
+      const uiItemData = window.itemsData.items.find((i) => i.id === uiItemId);
+
+      if (uiItemData) {
+        const status = getItemStatus(uiItemData);
+
+        // Debug: Log the item state
+        console.log(`Updating UI for ${uiItemData.name}: equipped=${uiItemData.equipped}, status=${status}`);
+
+        // Update the status text
+        uiItem.querySelector(".status-text").textContent = status;
+
+        // Update the equipped class and status indicator
+        if (status === "EQUIPPED") {
+          uiItem.classList.add("equipped");
+          uiItem.querySelector(".status-indicator").classList.add("active");
+        } else {
+          uiItem.classList.remove("equipped");
+          uiItem.querySelector(".status-indicator").classList.remove("active");
+        }
+      }
+    });
+
+    // Visual feedback
+    item.style.transform = "scale(0.98)";
+    setTimeout(() => {
+      item.style.transform = "";
+    }, 200);
   });
 
   // Interactive map cells
