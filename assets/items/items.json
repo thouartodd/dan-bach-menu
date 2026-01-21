@@ -7,7 +7,8 @@
       "icon": "item_placeholder.webp",
       "status": "EQUIPPED",
       "category": "suit",
-      "locked": false
+      "locked": false,
+      "visible": true
     },
     {
       "id": "morph-ball",
@@ -16,7 +17,8 @@
       "icon": "",
       "status": "AVAILABLE",
       "category": "suit",
-      "locked": false
+      "locked": false,
+      "visible": true
     },
     {
       "id": "gravity-suit",
@@ -25,7 +27,8 @@
       "icon": "item_placeholder.webp",
       "status": "LOCKED",
       "category": "suit",
-      "locked": true
+      "locked": true,
+      "visible": false
     },
     {
       "id": "missiles",
@@ -34,7 +37,8 @@
       "icon": "item_placeholder.webp",
       "status": "120/250",
       "category": "weapon",
-      "locked": false
+      "locked": false,
+      "visible": true
     },
     {
       "id": "power-beam",
@@ -43,7 +47,8 @@
       "icon": "item_placeholder.webp",
       "status": "EQUIPPED",
       "category": "weapon",
-      "locked": false
+      "locked": false,
+      "visible": true
     },
     {
       "id": "wave-beam",
@@ -52,7 +57,8 @@
       "icon": "item_placeholder.webp",
       "status": "LOCKED",
       "category": "weapon",
-      "locked": true
+      "locked": true,
+      "visible": false
     }
   ]
 }

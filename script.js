@@ -25,6 +25,9 @@ async function loadItems() {
     inventoryGrid.innerHTML = ""; // Clear existing items
 
     data.items.forEach((item) => {
+      // Skip items that are not visible
+      if (item.visible === false) return;
+
       const template = document.getElementById("inventory-item-template");
       const clone = document.importNode(template.content, true);
 
